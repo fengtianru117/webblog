@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="white-board ariticle-list">
+
+                <ul class="category-nav">
+                    {% get_article_categories as category_names %}
+                    {% for category in category_names %}
+                    <li>
+                        <a class="on" href="">
+                            {{category}}<span>&nbsp;3&nbsp;</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+
+
+
+                </ul>
+
+
+                <script>
+                    //选择当前浏览的话题
+                    $(function () {
+                        var category_id = $(".category-nav").attr("data-category-id");
+                        $(".category-nav").find("a").each(function () {
+                            var id = $(this).attr("href").split("/")[3];
+                            if (id == category_id) {
+                                $(this).addClass("on");
+                            }
+                        });
+                    });
+                </script>
+
+                {% for article in article_list %}
+                <article>
+                    <div class="row">
+                        <div class="col-lg-12 info">
+                            <div class="title">
+                                <a href=""></a>
+                            </div>
+                            <div class="abstract">
+                                {{article.content|truncatechars_html:100|safe}}
+                                <a href="">阅读全文 &gt;</a>
+                            </div>
+                            <div class="meta">
+                                &nbsp;&nbsp; 分类:&nbsp;
+                                <a href="">
+
+                                </a>&emsp;话题:&nbsp;
+                                <a href=""></a>&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+
+                <div class="f-pagination">
+
+                    <a href="?page=1">1</a>
+
+                    <span>...</span>
+
+                    <a href="?page="></a>
+
+                    <a class="current-page" href="?page="></a>
+
+                    <a href="?page="></a>
+
+                    <span>···</span>
+
+                    <a href="?page="></a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}

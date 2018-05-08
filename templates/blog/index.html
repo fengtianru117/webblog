@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block main %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 order-lg-2">
+            <div class="white-board widget">
+                <h6 class="widget-title">关于Fengtianru117</h6>
+                <p>不知道写些什么。。。</p>
+            </div>
+            <div class="white-board widget">
+                <h6 class="widget-title">分类</h6>
+                <ul class="category-widget">
+                    <li>
+                        <a href="dddd">
+                            全部文章
+                        </a>
+                    </li>
+                    <li>
+                        <a href="ggggg">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="white-board widget">
+                <h6 class="widget-title">话题</h6>
+                <div class="topic-widget">
+                    <a href="eeee">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8 order-lg-1">
+            <div class="white-board ariticle-list">
+                <div class="list-title">最新文章</div>
+                {% for article in article_list %}
+                <article>
+                    <div class="row">
+                        <!--   <div class="col-lg-4 cover">
+                               <div class="zoom-container">
+                                   <a href="{% static 'blog/images/favicon.ico' %]">
+                                       <img src="#">
+                                   </a>
+                               </div>
+                           </div>
+                           <div class="col-lg-8 info">
+                               <div class="title">
+                                   <a href="{{ article.get_absolute_url }}"></a>
+                               </div>
+                               <div class="abstract">
+                                   &emsp;
+                                   <a href="{{ article.get_absolute_url }}">阅读全文 &gt;</a>
+                               </div>
+                               <div class="meta">
+                                   &nbsp;&nbsp; 分类:&nbsp;
+                                   <a href="sssss">
+                                   </a>&emsp;话题:&nbsp;
+                                   <a href="ssssss"></a>&nbsp;
+                               </div>
+                           </div>
+                           -->
+                        <div class="col-lg-12 info">
+                            <div class="title">
+                                <a href="{{article.get_absolute_url}}">{{article.title}}</a>
+                            </div>
+                            <div class="abstract">
+                                {{article.content|truncatechars_html:100|safe}}
+                                <a href="{{article.get_absolute_url}}">阅读全文 ></a>
+                            </div>
+                            <div class="meta">
+                                &nbsp;&nbsp; 分类:&nbsp;
+                                <a href="">
+                                    {{article.category}}
+                                </a>&emsp;话题:&nbsp;
+                                {%for tag in article.tag.all%}
+                                <a href="sssss">
+                                    {{tag.name}}
+                                </a>&nbsp;
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                {% empty %}
+                还没有发布文章
+                {% endfor %}
+                <article>
+                    <a href="ssss">更多文章 . . .</a>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}
