@@ -49,11 +49,11 @@
                         -->
                         {% get_article_categories as article_categories %}
                         <li>
-                            <a href="{% url 'blog:category' %}">分类</a>
+                            <a href="{% url 'blog:category' 1 %}">分类</a>
                             <ul>
                                 {% for category in article_categories %}
                                 <li>
-                                    <a href="#">{{category.name}}</a>
+                                    <a href="{% url 'blog:category' category.pk %}">{{category.name}}</a>
                                 </li>
                                 {% endfor %}
                             </ul>

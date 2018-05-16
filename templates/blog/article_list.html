@@ -10,13 +10,11 @@
                     {% get_article_categories as category_names %}
                     {% for category in category_names %}
                     <li>
-                        <a class="on" href="">
-                            {{category}}<span>&nbsp;3&nbsp;</span>
+                        <a class="on" href="{% url 'blog:category' category.pk %}">
+                            {{category.name}}<span>&nbsp;{{category.counts}}&nbsp;</span>
                         </a>
                     </li>
                     {% endfor %}
-
-
 
                 </ul>
 

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block main %}
+{% load blog_tags %}
 
 <div class="container">
     <div class="row">
@@ -11,22 +12,25 @@
             <div class="white-board widget">
                 <h6 class="widget-title">分类</h6>
                 <ul class="category-widget">
+                    {% get_article_categories as article_categories %}
+                    {% for category in article_categories %}
                     <li>
-                        <a href="dddd">
-                            全部文章
+                        <a href="#">
+                        {{category.name}}
                         </a>
                     </li>
-                    <li>
-                        <a href="ggggg">
-                        </a>
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="white-board widget">
-                <h6 class="widget-title">话题</h6>
+                <h6 class="widget-title">标签</h6>
                 <div class="topic-widget">
-                    <a href="eeee">
+                    {% get_article_tags as article_tags %}
+                    {% for tag in article_tags %}
+                    <a href="#">
+                        {{tag.name}}
                     </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -69,11 +73,11 @@
                             </div>
                             <div class="meta">
                                 &nbsp;&nbsp; 分类:&nbsp;
-                                <a href="">
+                                <a href="{% url 'blog:category' article.category.pk %}">
                                     {{article.category}}
-                                </a>&emsp;话题:&nbsp;
+                                </a>&emsp;标签:&nbsp;
                                 {%for tag in article.tag.all%}
-                                <a href="sssss">
+                                <a href=" ">
                                     {{tag.name}}
                                 </a>&nbsp;
                                 {% endfor %}
@@ -85,7 +89,7 @@
                 还没有发布文章
                 {% endfor %}
                 <article>
-                    <a href="ssss">更多文章 . . .</a>
+                    <a href="{% url 'blog:category' 1 %}">更多文章 . . .</a>
                 </article>
             </div>
         </div>

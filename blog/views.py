@@ -1,13 +1,9 @@
 import markdown
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404
-from .models import Article
-from .models import Category
-from django.views.generic import ListView
-
-# Create your views here.
+from django.shortcuts import render, get_object_or_404
+from .models import Category, Article
+from django.views.generic import ListView, DetailView
+from comments.forms import CommentForm
 from django.http import HttpResponse
-from .models import Article
 
 '''
 def index(request):
@@ -45,6 +41,20 @@ class IndexView(ListView):
         return article_list
 
 
+'''def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        article_list = Article.objects.all().order_by('-publish_time')
+        for a in article_list:
+            a.content = markdown.markdown(a.content,
+                                          extensions=[
+                                              'markdown.extensions.extra',
+                                              'markdown.extensions.codehilite',
+                                              'markdown.extensions.toc',
+                                          ])
+        context['article_list'] = article_list
+        return context'''
+
+
 def detail(request, pk):
     article = get_object_or_404(Article, pk=pk)
     article.content = markdown.markdown(article.content,
@@ -53,14 +63,19 @@ def detail(request, pk):
                                             'markdown.extensions.codehilite',
                                             'markdown.extensions.toc',
                                         ])
+    form = CommentForm()
+    comment_list = article.comment_set.all()
     return render(request, 'blog/detail.html', context={
-        'article': article
+        'article': article,
+        'form': form,
+        'comment_list': comment_list,
     })
 
 
-def category(request):
-    # c = get_object_or_404(Category, pk=pk)
-    article_list = Article.objects.all().order_by('-publish_time')
+def category(request, category_pk):
+    # cate = get_object_or_404(Category,pk=category_pk)
+    cate = Category.objects.get(pk=category_pk)
+    article_list = Article.objects.filter(category=cate).order_by('-publish_time')
     for a in article_list:
         a.content = markdown.markdown(a.content,
                                       extensions=[
@@ -69,5 +84,5 @@ def category(request):
                                           'markdown.extensions.toc',
                                       ])
     return render(request, 'blog/article_list.html', context={
-        'article_list': article_list
+        'article_list': article_list,
     })
