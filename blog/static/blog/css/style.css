@@ -161,3 +161,7 @@ footer { background-color:white; border-top: 1px solid #eee; }
 .zoom-container img { transition: all .5s ease; }
 .zoom-container:hover img { transform:scale(1.25); }
 
+.widget .social-list {
+    padding: 10px; display: flex; align-items: center;
+    border-top: 1px solid lightgray; padding-bottom: 0;
+}

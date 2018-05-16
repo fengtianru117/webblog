@@ -9,6 +9,16 @@
             <div class="white-board widget">
                 <h6 class="widget-title">Fengtianru117</h6>
                 <p><img src="{% static 'blog/images/Cartman.jpg' %}"></p>
+                <ul class="social-list">
+                    <li><a href="https://github.com/fengtianru117">
+                        <i class="fa fa-github fa-2x"></i>
+                    </a></li>&nbsp&nbsp
+                    <li><a href="https://www.zhihu.com/search?type=content&q=python">
+                        <span class="fa-stack" style="margin-top: 0;">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-stack-1x" style="font-weight: bold; color: white;">知</i>
+                    </span></a></li>
+                </ul>
             </div>
             <div class="white-board widget">
                 <h6 class="widget-title">分类</h6>
@@ -17,7 +27,7 @@
                     {% for category in article_categories %}
                     <li>
                         <a href="{% url 'blog:category' category.pk %}">
-                        {{category.name}}
+                            {{category.name}}
                         </a>
                     </li>
                     {% endfor %}
