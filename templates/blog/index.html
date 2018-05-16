@@ -15,7 +15,7 @@
                     {% get_article_categories as article_categories %}
                     {% for category in article_categories %}
                     <li>
-                        <a href="#">
+                        <a href="{% url 'blog:category' category.pk %}">
                         {{category.name}}
                         </a>
                     </li>
