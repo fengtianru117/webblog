@@ -12,13 +12,6 @@
                     </a>
                 </div>
                 <article>
-                    <!--
-                    {% if article.cover %}
-                    <div class="cover">
-                        <img src="{{ article.cover.url }}">
-                    </div>
-                    {% endif %}
-                    -->
                     <h1 class="title">{{article.title}}</h1>
                     <!--
                     <div class="meta">
@@ -36,13 +29,41 @@
                         {{ article.content|safe }}
                     </div>
                 </article>
-                <!--
+
+
+                <div class="breadcrumb-nav">
+
+                </div>
+                <h1 class="title">评论:</h1>
+
+
+                <article>
+                    <form id="comment-form" action="{% url 'comments:article_comment' article.pk %}" method="post"
+                          data-login-user="">
+                        {% csrf_token %}
+                        <div class="col-lg-8">
+                            <label for="{{ form.name.id_for_label }}">用户名：</label>
+                            {{ form.name }}
+                            {{ form.name.errors }}
+                        </div>
+                        <div class="col-lg-8">
+                            <label for="{{ form.content.id_for_label }}">内容：</label>
+                            {{ form.content }}
+                            {{ form.content.errors }}
+                        </div>
+                        <div class="submit">
+                            <input type="submit" class="button" value="评论">
+                        </div>
+
+                    </form>
+                </article>
+
                 <div id='comment'>
                     <ul class="comment-list list-unstyled">
                         {% for comment in comment_list %}
                         <li class="comment-item">
-                            <span class="nickname">{{ comment.user }}</span>
-                            <time class="submit-date">{{ comment.pub_date }}</time>
+                            <span class="nickname">{{ comment.name }}</span>
+                            <time class="submit-date">{{ comment.create_time }}</time>
                             <div class="content">
                                 {{ comment.content }}
                             </div>
@@ -50,7 +71,8 @@
                         {% empty %} 暂无评论 {% endfor %}
                     </ul>
                 </div>
-                -->
+
+
             </div>
         </div>
         <div class="col-lg-4">
