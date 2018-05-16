@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block main %}
 {% load blog_tags %}
 
@@ -6,8 +7,8 @@
     <div class="row">
         <div class="col-lg-4 order-lg-2">
             <div class="white-board widget">
-                <h6 class="widget-title">关于Fengtianru117</h6>
-                <p>不知道写些什么。。。</p>
+                <h6 class="widget-title">Fengtianru117</h6>
+                <p><img src="{% static 'blog/images/Cartman.jpg' %}"></p>
             </div>
             <div class="white-board widget">
                 <h6 class="widget-title">分类</h6>

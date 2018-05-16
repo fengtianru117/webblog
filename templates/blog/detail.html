@@ -61,11 +61,13 @@
                 <div id='comment'>
                     <ul class="comment-list list-unstyled">
                         {% for comment in comment_list %}
-                        <li class="comment-list">
+                        <li class="comment">
                             <span class="nickname">{{ comment.name }}</span>
                             <time class="submit-date">{{ comment.create_time }}</time>
-                            <div class="content">
+                            <div class="comment-item">
                                 {{ comment.content }}
+                            </div>
+                            <div class="breadcrumb-nav">
                             </div>
                         </li>
                         {% empty %} 暂无评论 {% endfor %}
@@ -87,9 +89,6 @@
                         </a>
                     </li>
                     {% endfor %}
-
-
-
                 </ul>
             </div>
         </div>
