@@ -33,6 +33,7 @@ class Article(models.Model):
     author = models.ForeignKey(User, default=2, on_delete=models.SET_DEFAULT, verbose_name='作者')
     category = models.ForeignKey(Category, default=1, on_delete=models.SET_DEFAULT, verbose_name='分类')
     tag = models.ManyToManyField(Tag, blank=True, null=True, verbose_name='标签')
+    views = models.PositiveIntegerField('阅读量', default=0)
 
     # views =
 
@@ -42,4 +43,7 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse('blog:detail', kwargs={'pk': self.pk})
 
-
+    def increase_views(self):
+        self.views += 1
+        # 使用update_fields只更新views字段,提高效率
+        self.save(update_fields=['views'])

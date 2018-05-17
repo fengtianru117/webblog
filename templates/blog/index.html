@@ -12,7 +12,8 @@
                 <ul class="social-list">
                     <li><a href="https://github.com/fengtianru117">
                         <i class="fa fa-github fa-2x"></i>
-                    </a></li>&nbsp&nbsp
+                    </a></li>
+                    &nbsp;
                     <li><a href="https://www.zhihu.com/search?type=content&q=python">
                         <span class="fa-stack" style="margin-top: 0;">
                         <i class="fa fa-circle fa-stack-2x"></i>
@@ -83,7 +84,7 @@
                                 <a href="{{article.get_absolute_url}}">阅读全文 ></a>
                             </div>
                             <div class="meta">
-                                &nbsp;&nbsp; 分类:&nbsp;
+                                {{article.publish_time|date:"Y-m-d H:i:s"}}&emsp;&ensp;{{article.views}}阅读&emsp;&ensp;分类:&nbsp;
                                 <a href="{% url 'blog:category' article.category.pk %}">
                                     {{article.category}}
                                 </a>&emsp;标签:&nbsp;
