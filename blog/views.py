@@ -12,8 +12,7 @@ class IndexView(ListView):
     context_object_name = 'article_list'
 
     def get_queryset(self):
-        # article_list = super(IndexView,self).get_queryset().order_by('-publish_time')
-        article_list = Article.objects.all().order_by('-publish_time')
+        article_list = super(IndexView, self).get_queryset().order_by('-publish_time')
         for a in article_list:
             a.content = markdown.markdown(a.content,
                                           extensions=[
@@ -22,20 +21,6 @@ class IndexView(ListView):
                                               'markdown.extensions.toc',
                                           ])
         return article_list
-
-
-'''def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
-        article_list = Article.objects.all().order_by('-publish_time')
-        for a in article_list:
-            a.content = markdown.markdown(a.content,
-                                          extensions=[
-                                              'markdown.extensions.extra',
-                                              'markdown.extensions.codehilite',
-                                              'markdown.extensions.toc',
-                                          ])
-        context['article_list'] = article_list
-        return context'''
 
 
 def detail(request, pk):
