@@ -4,8 +4,10 @@ import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if __name__ == "__main__":
-    #sys.path.append('D:\\CodeWorkSpace\\Django\x0cengtianru117')
-    sys.path.append(os.path.join(BASE_DIR, ''))
+    # sys.path.append(os.path.join(BASE_DIR, ''))
+    # sys.path.remove('D:\\CodeWorkSpace\\Django\\fengtianru117')
+    # sys.path.pop(0)
+    # print(sys.path)
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "fengtianru117.settings")
     try:
         from django.core.management import execute_from_command_line

@@ -35,8 +35,6 @@ class Article(models.Model):
     tag = models.ManyToManyField(Tag, blank=True, null=True, verbose_name='标签')
     views = models.PositiveIntegerField('阅读量', default=0)
 
-    # views =
-
     def __str__(self):
         return self.title
 

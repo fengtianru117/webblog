@@ -23,7 +23,7 @@ class IndexView(ListView):
         return article_list
 
 
-def detail(request, pk):
+'''def detail(request, pk):
     article = get_object_or_404(Article, pk=pk)
     article.increase_views()
     article.content = markdown.markdown(article.content,
@@ -38,7 +38,7 @@ def detail(request, pk):
         'article': article,
         'form': form,
         'comment_list': comment_list,
-    })
+    })'''
 
 
 class ArticleDetailView(DetailView):
@@ -47,18 +47,29 @@ class ArticleDetailView(DetailView):
     context_object_name = 'article'
 
     def get(self, request, *args, **kwargs):
-        # 覆写 get 方法的目的是因为每当文章被访问一次，就得将文章阅读量 +1
-        # get 方法返回的是一个 HttpResponse 实例
-        # 之所以需要先调用父类的 get 方法，是因为只有当 get 方法被调用后，
-        # 才有 self.object 属性，其值为 Post 模型实例，即被访问的文章 post
-        response = super(ArticleDetailView, self).get(request, *args, **kwargs)
-
-        # 将文章阅读量 +1
-        # 注意 self.object 的值就是被访问的文章 post
+        response = super(ArticleDetailView, self).get(request, *args, *kwargs)
         self.object.increase_views()
-
-        # 视图必须返回一个 HttpResponse 对象
         return response
+
+    def get_object(self, queryset=None):
+        article = super(ArticleDetailView, self).get_object(queryset=None)
+        article.content = markdown.markdown(article.content,
+                                            extensions=[
+                                                'markdown.extensions.extra',
+                                                'markdown.extensions.codehilite',
+                                                'markdown.extensions.toc',
+                                            ])
+        return article
+
+    def get_context_data(self, **kwargs):
+        context = super(ArticleDetailView, self).get_context_data(**kwargs)
+        form = CommentForm()
+        comment_list = self.object.comment_set.all()
+        context.update({
+            'form': form,
+            'comment_list': comment_list
+        })
+        return context
 
 
 class CategoryView(ListView):

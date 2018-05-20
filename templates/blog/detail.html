@@ -42,17 +42,17 @@
                           data-login-user="">
                         {% csrf_token %}
                         <div class="col-lg-8">
-                            <label for="{{ form.name.id_for_label }}">用户名：</label>
+                            <label for="{{ form.name.id_for_label }}" style="width:100px">用户名：</label>
                             {{ form.name }}
                             {{ form.name.errors }}
                         </div>
                         <div class="col-lg-8">
-                            <label for="{{ form.content.id_for_label }}">内容：</label>
+                            <label for="{{ form.content.id_for_label }}" style="width:100px">内容：</label>
                             {{ form.content }}
                             {{ form.content.errors }}
                         </div>
                         <div class="submit">
-                            <input type="submit" class="button" value="评论">
+                            <input type="submit" class="button" value="提交评论">
                         </div>
 
                     </form>
