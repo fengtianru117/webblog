@@ -179,7 +179,7 @@ class ArticleDetailView(DetailView):
         return context
 
 
-class CategoryView(ListView):
+class CategoryView(IndexView):
     model = Article
     template_name = 'blog/article_list.html'
     context_object_name = 'article_list'
