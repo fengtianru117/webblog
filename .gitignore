@@ -1,3 +1,5 @@
 #My configurations:
 fengtianru117/settings.py
+fabfile.py
+*.bat
 *.pyc 
