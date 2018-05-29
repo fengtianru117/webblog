@@ -52,33 +52,10 @@
                 {% for article in article_list %}
                 <article>
                     <div class="row">
-                        <!--   <div class="col-lg-4 cover">
-                               <div class="zoom-container">
-                                   <a href="{% static 'blog/images/favicon.ico' %]">
-                                       <img src="#">
-                                   </a>
-                               </div>
-                           </div>
-                           <div class="col-lg-8 info">
-                               <div class="title">
-                                   <a href="{{ article.get_absolute_url }}"></a>
-                               </div>
-                               <div class="abstract">
-                                   &emsp;
-                                   <a href="{{ article.get_absolute_url }}">阅读全文 &gt;</a>
-                               </div>
-                               <div class="meta">
-                                   &nbsp;&nbsp; 分类:&nbsp;
-                                   <a href="sssss">
-                                   </a>&emsp;话题:&nbsp;
-                                   <a href="ssssss"></a>&nbsp;
-                               </div>
-                           </div>
-                           -->
                         {% if article.cover %}
                         <div class="col-lg-4 cover">
                             <div class="zoom-container">
-                                <a href="{{ article.cover.url }}">
+                                <a href="{{ article.get_absolute_url }}">
                                     <img src="{{ article.cover.url }}">
                                 </a>
                             </div>

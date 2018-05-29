@@ -13,6 +13,11 @@
                     </a>
                 </div>
                 <article>
+                     {% if article.cover %}
+                    <div class="cover">
+                        <img src="{{ article.cover.url }}">
+                    </div>
+                    {% endif %}
                     <h1 class="title">{{article.title}}</h1>
                     <!--
                     <div class="meta">

@@ -2,4 +2,5 @@
 fengtianru117/settings.py
 fabfile.py
 *.bat
-*.pyc 
+*.pyc
+media/
