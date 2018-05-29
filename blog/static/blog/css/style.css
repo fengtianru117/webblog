@@ -94,7 +94,7 @@ main { margin: 10px 0; }
     box-shadow: 0 1px 3px #ccc;
 }
 .breadcrumb-nav { padding: 10px; border-bottom: 1px solid lightgray; }
-
+.flex-center { display: flex; align-items: center; justify-content: center; flex-direction: column; }
 .ariticle-list .list-title { padding: 10px 15px; }
 .ariticle-list article { padding: 10px 15px; border-top: 1px solid lightgray; }
 .ariticle-list .info { margin: auto 0; }
