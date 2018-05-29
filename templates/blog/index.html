@@ -75,7 +75,15 @@
                                </div>
                            </div>
                            -->
-                        <div class="col-lg-12 info">
+                        {% if article.cover %}
+                        <div class="col-lg-4 cover">
+                            <div class="zoom-container">
+                                <a href="{{ article.cover.url }}">
+                                    <img src="{{ article.cover.url }}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 info">
                             <div class="title">
                                 <a href="{{article.get_absolute_url}}">{{article.title}}</a>
                             </div>
@@ -95,6 +103,29 @@
                                 {% endfor %}
                             </div>
                         </div>
+                        {% else %}
+                             <div class="col-lg-12 info">
+                            <div class="title">
+                                <a href="{{article.get_absolute_url}}">{{article.title}}</a>
+                            </div>
+                            <div class="abstract">
+                                {{article.content|truncatechars_html:100|safe}}
+                                <a href="{{article.get_absolute_url}}">阅读全文 ></a>
+                            </div>
+                            <div class="meta">
+                                {{article.publish_time|date:"Y-m-d H:i:s"}}&emsp;&ensp;{{article.views}}阅读&emsp;&ensp;分类:&nbsp;
+                                <a href="{% url 'blog:category' article.category.pk %}">
+                                    {{article.category}}
+                                </a>&emsp;标签:&nbsp;
+                                {%for tag in article.tag.all%}
+                                <a href=" ">
+                                    {{tag.name}}
+                                </a>&nbsp;
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        {% endif %}
                     </div>
                 </article>
                 {% empty %}
