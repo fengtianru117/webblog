@@ -6,6 +6,7 @@ from comments.forms import CommentForm
 from django.http import HttpResponse
 
 
+
 class IndexView(ListView):
     model = Article
     template_name = 'blog/index.html'
