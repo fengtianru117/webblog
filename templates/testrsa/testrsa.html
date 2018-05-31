@@ -9,7 +9,7 @@
 <br>公钥的N为:{{public_key.n}}</br>
 <br>公钥的E为:{{public_key.e}}</br>
 <form id="search" name="search" method="post" action="{% url 'testrsa:testrsa' %}">
-    <input name="message" type="text" id="keywords" placeholder="请输入明文" required><input type="submit" value="搜索文章">
+    <input name="message" type="text" id="message" placeholder="请输入明文" required><input type="submit" value="搜索文章">
 </form>
 </body>
 </html>
