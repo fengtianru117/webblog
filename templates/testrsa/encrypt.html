@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>encrypt</title>
+</head>
+<body>
+输入明文还有N和E会在下方返回加密后的密文和解密后的明文
+<form id="testrsa" name="testrsa" method="post" action="{% url 'testrsa:encrypt' %}">
+    {% csrf_token %}
+    <textarea name="message" type="text" id="message" placeholder="请输入明文" ></textarea>
+    <textarea name="N" type="text" id="N" placeholder="请输入N" required rows="20" cols="60"></textarea>
+     <textarea name="E" type="text" id="E" placeholder="请输入E" ></textarea>
+    <input type="submit" value="提交">
+</form>
+<br>加密后的密文是:
+{% if crypto %}
+<br>{{crypto}}
+{% endif %}
+<br>明文是:
+{{message}}
+</body>
+</html>
