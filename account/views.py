@@ -12,11 +12,11 @@ class OAuthLoginView(TemplateView):
     template_name = 'account/login.html'
 
     def get_context_data(self, **kwargs):
-        context = super(self, OAuthLoginView).get_context_data()
+        context = super(OAuthLoginView,self).get_context_data()
         if 'next' in self.request.GET:
             # next为转到登录页面之前用户正在浏览的页面
             # 保存到session里以便登录完成后跳转回之前的页面
-            self.request.session['next'] = self.reuqest.GET['next']
+            self.request.session['next'] = self.request.GET['next']
             context['github_oauth_url'] = \
                 'https://github.com/login/oauth/authorize?client_id={}' \
                     .format(settings.GITHUB_CLIENT_ID)
@@ -38,6 +38,8 @@ class OAuthView(View):
         # 可以把get方法看成对视图的简单调用
         access_token = self.get_access_token(request)
         user_info = self.get_user_info(access_token)
+        # 在子类中实现authenticate()方法
+        return self.authenticate(user_info)
 
     def get_access_token(self, request):
         '获取access token'
@@ -61,6 +63,15 @@ class OAuthView(View):
             # 如果code过期了，则无法得到access_token
             # 这种情况下应该抛出禁止访问的错误，django会返回403
             raise PermissionDenied
+
+    def get_user_info(self, access_token):
+        '获取用户信息'
+        url = self.user_api + access_token
+        # 拿到access_token后调用api即可获得用户信息
+        r = requests.get(url, timeout=1)
+        # 用户信息也是json文本
+        user_info = r.json()
+        return user_info
 
     def get_success_url(self):
         '获取登录成功后返回的页面'

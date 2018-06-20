@@ -66,9 +66,9 @@
                         </form>
                         <div id="userbar">
                             <a></a>
-                            <a href="zhuxiao">注销</a>
+                            <a href="{% url 'account:logout' %}?next={{ request.path }}">注销</a>
 
-                            <a href="/accounts/login?next=/">登录</a>
+                            <a href="{% url 'account:login' %}?next={{ request.path }}" target="_blank">登录</a>
                             <a>注册</a>
 
                         </div>
