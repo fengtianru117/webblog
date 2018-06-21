@@ -165,3 +165,9 @@ footer { background-color:white; border-top: 1px solid #eee; }
     padding: 10px; display: flex; align-items: center;
     border-top: 1px solid lightgray; padding-bottom: 0;
 }
+.avatar {
+    width: 32px; height: 32px;
+    position: absolute;
+    text-align: center; color: white !important;
+    background-color: #eee; border-radius: 4px;
+}
