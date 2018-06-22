@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
+import xadmin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #path(r'xadmin/',xadmin.site.urls),
     path('', include('blog.urls')),
     path('', include('comments.urls')),
     path('', include('testrsa.urls')),
